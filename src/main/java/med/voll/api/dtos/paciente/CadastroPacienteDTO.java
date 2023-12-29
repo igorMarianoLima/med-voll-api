@@ -1,4 +1,12 @@
 package med.voll.api.dtos.paciente;
 
-public record CadastroPacienteDTO() {
+import med.voll.api.dtos.endereco.CadastroEnderecoDTO;
+
+public record CadastroPacienteDTO(
+    String nome,
+    String email,
+    String telefone,
+    String cpf,
+    CadastroEnderecoDTO endereco
+) {
 }
