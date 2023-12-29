@@ -1,6 +1,6 @@
 package med.voll.api.dtos.medico;
 
-import med.voll.api.dtos.CadastroEnderecoDTO;
+import med.voll.api.dtos.endereco.CadastroEnderecoDTO;
 import med.voll.api.enums.Especialidade;
 
 public record CadastroMedicoDTO(
