@@ -1,6 +1,6 @@
 package med.voll.api.controllers;
 
-import med.voll.api.dtos.CadastroMedicoDTO;
+import med.voll.api.dtos.medico.CadastroMedicoDTO;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
