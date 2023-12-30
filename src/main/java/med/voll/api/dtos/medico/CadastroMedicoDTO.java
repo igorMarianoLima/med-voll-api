@@ -8,6 +8,6 @@ public record CadastroMedicoDTO(
         String email,
         String crm,
         Especialidade especialidade,
-        CadastroEnderecoDTO cadastroEnderecoDTO
+        CadastroEnderecoDTO endereco
 ) {
 }
