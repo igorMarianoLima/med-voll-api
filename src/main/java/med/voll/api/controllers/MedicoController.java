@@ -1,5 +1,6 @@
 package med.voll.api.controllers;
 
+import jakarta.transaction.Transactional;
 import med.voll.api.dtos.medico.CadastroMedicoDTO;
 
 import med.voll.api.entities.Medico;
@@ -19,15 +20,12 @@ public class MedicoController {
     private MedicoService _medicoService;
 
     @PostMapping
+    @Transactional
     public ResponseEntity<Medico> cadastrar(
         @RequestBody CadastroMedicoDTO medico
     ) {
         Medico medicoEntity = this._medicoService.cadastrar(medico);
 
-        if (medicoEntity != null) {
-            return new ResponseEntity<Medico>(medicoEntity, HttpStatus.CREATED);
-        } else {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return new ResponseEntity<Medico>(medicoEntity, HttpStatus.CREATED);
     }
 }
