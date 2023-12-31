@@ -1,6 +1,7 @@
 package med.voll.api.controllers;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import med.voll.api.dtos.medico.CadastroMedicoDTO;
 
 import med.voll.api.entities.Medico;
@@ -22,7 +23,9 @@ public class MedicoController {
     @PostMapping
     @Transactional
     public ResponseEntity<Medico> cadastrar(
-        @RequestBody CadastroMedicoDTO medico
+        @RequestBody
+        @Valid
+        CadastroMedicoDTO medico
     ) {
         Medico medicoEntity = this._medicoService.cadastrar(medico);
 
