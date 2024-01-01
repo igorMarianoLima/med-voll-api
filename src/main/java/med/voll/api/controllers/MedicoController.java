@@ -8,6 +8,8 @@ import med.voll.api.dtos.medico.ListarMedicoDTO;
 import med.voll.api.entities.Medico;
 import med.voll.api.services.MedicoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,8 +35,10 @@ public class MedicoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ListarMedicoDTO>> listarTodos() {
-        List<ListarMedicoDTO> listaMedicos = this._medicoService.listarTodos().stream().map(ListarMedicoDTO::new).toList();
+    public ResponseEntity<Page<ListarMedicoDTO>> listarTodos(
+        Pageable paginacao
+    ) {
+        Page<ListarMedicoDTO> listaMedicos = this._medicoService.listarTodos(paginacao).map(ListarMedicoDTO::new);
 
         return new ResponseEntity<>(listaMedicos, HttpStatus.OK);
     }
