@@ -1,4 +1,13 @@
 package med.voll.api.dtos.paciente;
 
-public record ListarPacienteDTO() {
+import med.voll.api.entities.Paciente;
+
+public record ListarPacienteDTO(
+    String nome,
+    String email,
+    String cpf
+) {
+    public ListarPacienteDTO(Paciente paciente) {
+        this(paciente.getNome(), paciente.getEmail(), paciente.getCpf());
+    }
 }
