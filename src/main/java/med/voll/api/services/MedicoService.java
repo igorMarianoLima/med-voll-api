@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 public class MedicoService {
     @Autowired
@@ -27,5 +29,9 @@ public class MedicoService {
                     "Houve um erro ao cadastrar o médico"
             );
         }
+    }
+
+    public List<Medico> listarTodos() {
+        return _medicoRepository.findAll();
     }
 }
