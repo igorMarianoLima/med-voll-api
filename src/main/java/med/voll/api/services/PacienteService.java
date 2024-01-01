@@ -4,9 +4,13 @@ import med.voll.api.dtos.paciente.CadastroPacienteDTO;
 import med.voll.api.entities.Paciente;
 import med.voll.api.interfaces.medico.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @Service
 public class PacienteService {
@@ -27,5 +31,13 @@ public class PacienteService {
                 "Houve um erro ao cadastrar o paciente"
             );
         }
+    }
+
+    public List<Paciente> listarTodos() {
+        return this._pacienteRepository.findAll();
+    }
+
+    public Page<Paciente> listarTodos(Pageable pagination) {
+        return this._pacienteRepository.findAll(pagination);
     }
 }
