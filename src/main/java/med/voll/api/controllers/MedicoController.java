@@ -54,4 +54,12 @@ public class MedicoController {
         Medico medicoAtualizado = this._medicoService.atualizar(body);
         return new ResponseEntity<>(medicoAtualizado, HttpStatus.OK);
     }
+
+    @DeleteMapping("/{idMedico}")
+    public String excluir(
+        @PathVariable
+        Long idMedico
+    ) {
+        return String.format("Deverá excluir um médico de Id %s", idMedico);
+    }
 }
