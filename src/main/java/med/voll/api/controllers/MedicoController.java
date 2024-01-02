@@ -56,10 +56,11 @@ public class MedicoController {
     }
 
     @DeleteMapping("/{idMedico}")
-    public String excluir(
+    @Transactional
+    public void excluir(
         @PathVariable
         Long idMedico
     ) {
-        return String.format("Deverá excluir um médico de Id %s", idMedico);
+        this._medicoService.excluir(idMedico);
     }
 }
