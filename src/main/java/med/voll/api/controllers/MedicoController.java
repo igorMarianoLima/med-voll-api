@@ -42,4 +42,10 @@ public class MedicoController {
 
         return new ResponseEntity<>(listaMedicos, HttpStatus.OK);
     }
+
+    @PutMapping
+    @Transactional
+    public String atualizar() {
+        return "Atualizar médico";
+    }
 }
