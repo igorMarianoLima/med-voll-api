@@ -2,6 +2,7 @@ package med.voll.api.controllers;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import med.voll.api.dtos.medico.AtualizarMedicoDTO;
 import med.voll.api.dtos.medico.CadastroMedicoDTO;
 
 import med.voll.api.dtos.medico.ListarMedicoDTO;
@@ -45,7 +46,12 @@ public class MedicoController {
 
     @PutMapping
     @Transactional
-    public String atualizar() {
-        return "Atualizar médico";
+    public ResponseEntity<Medico> atualizar(
+        @RequestBody
+        @Valid
+        AtualizarMedicoDTO body
+    ) {
+        Medico medicoAtualizado = this._medicoService.atualizar(body);
+        return new ResponseEntity<>(medicoAtualizado, HttpStatus.OK);
     }
 }
