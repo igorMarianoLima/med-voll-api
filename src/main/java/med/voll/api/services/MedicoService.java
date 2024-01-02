@@ -35,12 +35,8 @@ public class MedicoService {
         }
     }
 
-    public List<Medico> listarTodos() {
-        return _medicoRepository.findAll();
-    }
-
     public Page<Medico> listarTodos(Pageable pageable) {
-        return _medicoRepository.findAll(pageable);
+        return _medicoRepository.findAllByAtivoTrue(pageable);
     }
 
     public Medico atualizar(AtualizarMedicoDTO dados) {
@@ -50,6 +46,16 @@ public class MedicoService {
                         );
 
         medico.atualizarDados(dados);
+        return medico;
+    }
+
+    public Medico excluir(Long idMedico) {
+        Medico medico = _medicoRepository.findById(idMedico)
+                        .orElseThrow(
+                            () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
+                        );
+
+        medico.excluir();
         return medico;
     }
 }
