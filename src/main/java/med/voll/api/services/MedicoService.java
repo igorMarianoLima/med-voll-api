@@ -1,5 +1,6 @@
 package med.voll.api.services;
 
+import med.voll.api.dtos.medico.AtualizarMedicoDTO;
 import med.voll.api.dtos.medico.CadastroMedicoDTO;
 import med.voll.api.entities.Medico;
 import med.voll.api.interfaces.medico.MedicoRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MedicoService {
@@ -39,5 +41,15 @@ public class MedicoService {
 
     public Page<Medico> listarTodos(Pageable pageable) {
         return _medicoRepository.findAll(pageable);
+    }
+
+    public Medico atualizar(AtualizarMedicoDTO dados) {
+        Medico medico = _medicoRepository.findById(dados.id())
+                        .orElseThrow(
+                            () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
+                        );
+
+        medico.atualizarDados(dados);
+        return medico;
     }
 }
